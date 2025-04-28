@@ -1,0 +1,36 @@
+CREATE TABLE IF NOT EXISTS users (
+    "id" VARCHAR PRIMARY KEY,
+    "first_name" VARCHAR(255) NOT NULL,
+    "last_name" VARCHAR(255) NOT NULL,
+    "email" VARCHAR(255) UNIQUE NOT NULL,
+    "password" VARCHAR(255) NOT NULL,
+    "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE IF NOT EXISTS posts (
+    "id" VARCHAR PRIMARY KEY,
+    "title" VARCHAR(255) NOT NULL,
+    "body" TEXT NOT NULL,
+    "published" BOOLEAN DEFAULT FALSE,
+    "user_id" VARCHAR NOT NULL,
+    "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY ("user_id") REFERENCES users("id") ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS comments (
+    "id" VARCHAR PRIMARY KEY,
+    "user_id" VARCHAR NOT NULL,
+    "body" TEXT NOT NULL,
+    "post_id" VARCHAR NOT NULL,
+    "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY ("user_id") REFERENCES users("id") ON DELETE CASCADE,
+    FOREIGN KEY ("post_id") REFERENCES posts("id") ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS saved_posts (
+    "id" VARCHAR PRIMARY KEY,
+    "user_id" VARCHAR NOT NULL,
+    "post_id" VARCHAR NOT NULL,
+    "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY ("user_id") REFERENCES users("id") ON DELETE CASCADE,
+    FOREIGN KEY ("post_id") REFERENCES posts("id") ON DELETE CASCADE
+);

@@ -1,0 +1,10 @@
+
+go get github.com/joho/godotenv
+go get github.com/spf13/viper
+
+make tidy
+
+go get github.com/lib/pq    -> postgres
+go get github.com/jmoiron/sqlx  -> conection
+
+make migration name=initial_migrate   migratsiya file cretae
