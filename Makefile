@@ -20,3 +20,7 @@ migrateup:
 
 migratedown:
 	@migrate -path ./migrations -database "$(DB_URL)" -verbose down
+test:
+	@go test ./... -v
+test-cover:
+	@go test ./... -cover -v

@@ -8,3 +8,6 @@ go get github.com/lib/pq    -> postgres
 go get github.com/jmoiron/sqlx  -> conection
 
 make migration name=initial_migrate   migratsiya file cretae
+go get github.com/google/uuid
+
+go get -u github.com/gin-gonic/gin  -> GIN framework for rest api
