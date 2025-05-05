@@ -77,6 +77,7 @@ func (u *UserRepo) Update(ctx context.Context, req *repo.UpdateUser) error {
 }
 
 func (u *UserRepo) Get(ctx context.Context, id string) (*repo.User, error) {
+
 	query := `SELECT 
 	id, first_name, last_name, email, password, created_at 
 	FROM users WHERE id = $1`
